@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="col-10 m-auto">
+    <form method="post" asp-action="Index" asp-controller="Home">
+        <div class="d-flex justify-content-center gap-5 p-4 col-9 m-auto" style="background-color:lavender; border-radius:10px;">
+            <div class="col-3">
+                <div class="mb-3">
+                    <label for="hargaBarang" class="form-label">Harga Barang</label>
+                    <input type="text" name="hargaBarang" class="form-control" id="hargaBarang" aria-describedby="emailHelp" required>
+                </div>
+                <div class="mb-3">
+                    <label for="dpBarang" class="form-label">DP Barang</label>
+                    <input type="text" name="dpBarang" class="form-control" id="dpBarang" aria-describedby="emailHelp" required>
+                </div>
+                <div class="mb-3">
+                    <label for="cicilan" class="form-label">Cicilan</label>
+                    <input type="text" name="cicilan" class="form-control" id="cicilan" aria-describedby="emailHelp" required>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="mb-2 col-6">
+                    <label for="inflasi" class="form-label">Jumlah Inflasi</label>
+                    <select class="form-select col-1" name="option" id="inflasi" onchange="showTextBoxes(this.value)">
+                        @for (int a = 1; a <= 5; a++)
+                        {
+                            <option value="@a">@a</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-5">
+                    <div id="textBoxesContainer"></div>
+                </div>
+            </div>
+            <div class="col-3 m-auto">
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    function showTextBoxes(optionValue) {
+        var textBoxesContainer = document.getElementById("textBoxesContainer");
+        textBoxesContainer.innerHTML = "";
+        var jumlah = optionValue;
+        for (var a = 1; a <= jumlah; a++) {
+            var container = document.createElement("div");
+            container.classList.add("mb-3");
+
+            var label = document.createElement("label");
+            label.classList.add("form-label");
+            label.textContent = `Inflasi ke-${a}`
+
+            var textBox = document.createElement("input");
+            textBox.classList.add("form-control");
+            textBox.type = "text";
+            textBox.name = "rasio[]";
+
+            container.appendChild(label);
+            container.appendChild(textBox);
+            textBoxesContainer.appendChild(container);
+            textBoxesContainer.appendChild(document.createElement("br"));
+        }
+    }
+</script>

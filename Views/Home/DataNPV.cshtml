@@ -1,0 +1,39 @@
+﻿<div class="col-4">
+    <table class="table text-center">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Rasio</th>
+                <th scope="col">NPV</th>
+                <th scope="col">Worksheet</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{int i = 1;}
+            @foreach (var data in ViewBag.NpvData)
+            {
+                <tr>
+                    <td>@data.No</td>
+                    <td>@data.Rasio%</td>
+                    <td><span>Rp</span>@data.Npv.ToString("N0")</td>
+                    <td>
+                        <a class="btn btn-success" href="/Home/DetailPv/@data.No">Worksheet <span>@i</span></a>
+                    </td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+
+    <table class="table table-borderless">
+        <tr>
+            <th>IRR</th>
+            <td>=</td>
+            <td>@ViewBag.IrrDataDecimal%</td>
+            <td>=</td>
+            <td>@ViewBag.IrrDataRound%</td>
+        </tr>
+    </table>
+</div>
+
+@*<h1>@ViewBag.IrrData</h1>*@

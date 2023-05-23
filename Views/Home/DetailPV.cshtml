@@ -1,0 +1,41 @@
+﻿<div class="col-9 m-auto d-flex gap-5">
+    <div class="col-6" style="background-color:lavender;">
+        <table class="table text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Bulan</th>
+                    <th scope="col">PV</th>
+                    <th scope="col">PV = Σpv / (1 + i)<sup>n</sup></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                }
+                @foreach (var data in ViewBag.valueDataPv)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>PV<span>@i</span></td>
+                        <td><span>Rp</span>@data.ToString("N0")</td>
+                    </tr>
+                    i++;
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-5 h-25" style="background-color:lavender; border-radius:10px;">
+        <table class="table table-borderless">
+            <tr>
+                <th>Interest</th>
+                <td>@ViewBag.valuePersen%</td>
+                <td>@ViewBag.valueInterest</td>
+            </tr>
+            <tr>
+                <th colspan="2">Σpv</th>
+                <th><span>Rp</span>@ViewBag.valuePvTotal</th>
+            </tr>
+        </table>
+    </div>
+</div>
